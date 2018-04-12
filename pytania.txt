@@ -1,0 +1,24 @@
+Purpose of this document is to share and develop knowledge about git tool:
+Some questions for beginning:
+
+1. How can we create branch in web repository, does creating branch is possible only with special authorization?
+
+2 When we have web repository with branches, how can we switch between this branches, and download proper version of file?
+
+
+
+
+
+
+
+
+
+
+//------------------------------OJCZYSTY JEZYK------------------------------
+
+Plik do wymiany informacji o git tool;
+
+Na pocz¹tek kilka pytañ:
+1. Jak tworzyæ ga³¹Ÿ w zdalnym repozytorum, czy mo¿e to robiæ tylko owner repozytorium ze specjalnymi uprawnieniami?
+
+2. Jak siê prze³¹czaæ miêdzy mainline a ga³êzi¹ gdy ju¿ mamy rozbudowane repozytorium w celu pobrania w³aœciwego pliku?
