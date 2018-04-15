@@ -23,6 +23,7 @@ Na pocz¹tek kilka pytañ:
 Ad.1. Skoro utworzy³e¶ branch to zak³am, ¿e to ju¿ wiesz, ale dla porz±dku:
 - jedziemy na jednym koncie (wiêc problemów z uprawnieniami nie ma. Normalnie jak siê pracuje na jakim¶ du¿ym repo to u¿ytkownicy maj± ró¿ne poziomy dostêpów,
 - komenda: git push origin +branchName - generalnie pushuje siê "normalnie" tylko z "+"
+- komenda2: git push -u origin branchName - robi to samo ale dodatkowo ustawia upstream (opisany poni¿ej)
 
 2. Jak siê prze³¹czaæ miêdzy mainline a ga³êzi¹ gdy ju¿ mamy rozbudowane repozytorium w celu pobrania w³aœciwego pliku?
 Ad.2. Tu bym zacz±³ od kilku komend
