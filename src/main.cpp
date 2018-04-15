@@ -46,12 +46,6 @@ int main(int argc, char** argv)
       int wynik = calc.wykonajDzialanie(Tryb::Dodawanie);
 
       std::cout << "Wynik: " << wynik << std::endl;
-
-
-;
-      
-
-      //std::cout << "Wynik: " << result << std::endl;
    }
 
 }
