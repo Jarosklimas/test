@@ -20,5 +20,37 @@ Plik do wymiany informacji o git tool;
 
 Na pocz¹tek kilka pytañ:
 1. Jak tworzyæ ga³¹Ÿ w zdalnym repozytorum, czy mo¿e to robiæ tylko owner repozytorium ze specjalnymi uprawnieniami?
+Ad.1. Skoro utworzy³e¶ branch to zak³am, ¿e to ju¿ wiesz, ale dla porz±dku:
+- jedziemy na jednym koncie (wiêc problemów z uprawnieniami nie ma. Normalnie jak siê pracuje na jakim¶ du¿ym repo to u¿ytkownicy maj± ró¿ne poziomy dostêpów,
+- komenda: git push origin +branchName - generalnie pushuje siê "normalnie" tylko z "+"
 
 2. Jak siê prze³¹czaæ miêdzy mainline a ga³êzi¹ gdy ju¿ mamy rozbudowane repozytorium w celu pobrania w³aœciwego pliku?
+Ad.2. Tu bym zacz±³ od kilku komend
+git branch - wy¶wietla branche które s± utworzone tylko w lokalnej wersji danego repo
+git branch -a - wy¶wietla wszystkie branche - równie¿ te dostêpne w repo zdalnym ale nieobecne w lokalnym (wtedy s± jako remotes/origin/branchName)
+
+jak chcesz siê prze³±czyæ tylko pomiêdzy lokalnymi to jest proste: git checkout branchName
+jak siê chcesz prze³±czyæ (de facto utworzyæ lokalnie) na branch która jest na remote to s± 2 sposoby:
+a) git checkout branchName - tworzy branch w lokalnym repo, prze³±cza na ni± i dodaje równie¿  upstream ( o upstream pó¼niej)
+b) git checkout -b branchName
+   git branch --set-upstream-to=origin/branchName
+
+te 2 komendy (b) daj± to samo co (a) wiêc ja stosujê (a)
+
+upstream: jest to super rzecz :) A konretnie dziêki ustawieniu tego mówisz gitowi jaka jest branch "wzorcowa" na remote (zdalym repo) z którym git ma dan± branch porównywaæ ( np. git status mówi czy jeste¶ up-to-date (w stanie zgodnym), behind (za, remote jest do przodu z commitami) czy ahead (lokalna wersja brancha jest do przodu z commitami w porównaniu do remote)
+Pozwala to równie¿ prosto wysy³aæ zmiany przy pomocy komendy git push origin bez specyfikowania branch bo git ju¿ wie jaka jest jego branch "matka", czyli np:
+jeste¶my na branchy: branch1234
+w przypadku ustawionego upstreama operujemy wystarczy:
+git push origin
+
+bez upstreama musimy prezycowaæ branch na któr± git ma wys³aæ zmiany
+git push origin branch1234
+
+do sprawdzania upstreamów dla branchy s³u¿y komenda
+git branch -vv
+
+przyk³adowy output (aktualny stan Naszego repo):
+git branch -vv
+  master     98d15d8 [origin/master] add informaton about branch
+* repBranch1 9d497f0 [origin/repBranch1] add error info
+
