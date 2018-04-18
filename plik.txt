@@ -6,4 +6,5 @@ moj pierwszy plik
 
 - zmergowalem branch repBranch1 do mastera bo tam by³y wa¿ne pytania
 - doda³em kilka branchy do zabawy zdalnymi branchami :)
+- proponujê rozwijaæ kalkulator na branchy feature/kalkulator a jak kalkulator bedzie gotowy to zmergujemy do mastera
 

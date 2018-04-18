@@ -60,15 +60,14 @@ int main(int argc, char** argv)
 	int wynik2 = calc.wykonajDzialanie(Tryb::Mnozenie);
 	int wynik3 = calc.wykonajDzialanie(Tryb::Dzielenie);
 
+
       	std::cout << "Wynik dodawania: " << wynik << std::endl;
 	std::cout << "Wynik odejmowania: " << wynik1 << std::endl;
 	std::cout << "Wynik mnożenia: " << wynik2 << std::endl;
 	std::cout << "Wynik dzielenie: " << wynik3 << std::endl;
 
-;
       
 
-      //std::cout << "Wynik: " << result << std::endl;
    }
 
 }
