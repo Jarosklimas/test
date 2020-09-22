@@ -27,8 +27,8 @@ def policz_srednia(*args):
 print (policz_srednia (2,3,5))
 print(policz_srednia (5, 6, 4, 2))
 
-def wypisz _informacje(**kwargs): #kwargs to jest inaczej słownik
+def wypisz_informacje(**kwargs): #kwargs to jest inaczej słownik
     for klucz in kwargs:
-        print(f'Pod kluczem {klucz} znajduje sie {kwargs[klucz]}')
+        print(f'Pod kluczem {klucz} znajduje sie {kwargs[klucz]}.')
 
 wypisz_informacje (imie='Jarek', nazwisko='Klimczyk')
