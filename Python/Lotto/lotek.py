@@ -38,6 +38,8 @@ file_1 = xlrd.open_workbook("D:/priv_repo/test/Python/dl.xls")
 for sheet_name in file_1.sheet_names():
     arkusz = file_1.sheet_by_name(sheet_name)
     print (arkusz.row_values(-1)[4],)
+    print (arkusz.row_values(-1)[4],)
+    print (arkusz.row_values(-1)[4],)
     f.close
 
 
