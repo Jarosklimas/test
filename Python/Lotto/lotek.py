@@ -8,6 +8,9 @@ import xlwt
 from bs4 import BeautifulSoup
 from requests import get
 import xlrd
+import pandas as pd
+import numpy as np
+
 
 URL ="http://www.mbnet.com.pl/dl.xls"
 URL2 = "http://www.mbnet.com.pl/dl.txt"
@@ -21,7 +24,16 @@ filepath = 'D:/priv_repo/test/Python/dl.xls'
 filepath2 = 'D:/priv_repo/test/Python/dl.txt'
 filepath3 ="D:/priv_repo/test/Python/bazalosl.zip"
 
-
+def data_from_excel(filepath):
+    data_list = []
+    data = xlrd.open_workbook(filepath)
+    sheet = data.sheet_by_index(0)
+    sheet.cell_value(0, 0)
+ 
+    for i in range(sheet.nrows):
+        data_list.append(sheet.cell_value(i, 0))
+    return print(data_list)
+'''
 with open(filepath, 'wb') as f:
     f.write(response.content)
     f.close
@@ -33,15 +45,27 @@ with open(filepath2, 'wb') as f2:
 with open(filepath3, 'wb') as f3:
     f3.write(b.content)
     f3.close
-
+'''
 file_1 = xlrd.open_workbook("D:/priv_repo/test/Python/dl.xls")
+print ("The number of worksheets is", file_1.nsheets)
+print ("Worksheet name(s):", file_1.sheet_names())
+sh = file_1.sheet_by_index(0)
+print(sh.name, sh.nrows, sh.ncols)
+print ("Cell D30 is", sh.cell_value(rowx=29, colx=3))
+lista = sh.col_values(-6)[:-6]
+print (lista)
+'''
+rx= 1
+for rx   in range(sh.nrows):
+    print (sh.row(rx))
+'''
 for sheet_name in file_1.sheet_names():
     arkusz = file_1.sheet_by_name(sheet_name)
     print (arkusz.row_values(-1)[4],)
+    print (arkusz.row_values(-1)[2:],)
     print (arkusz.row_values(-1)[4],)
-    print (arkusz.row_values(-1)[4],)
-    f.close
-
+    print(arkusz.name)
+    
 
 
 #f.read(8)
