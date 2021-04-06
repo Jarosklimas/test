@@ -10,6 +10,7 @@ from requests import get
 import xlrd
 import pandas as pd
 import numpy as np
+import random
 
 
 URL ="http://www.mbnet.com.pl/dl.xls"
@@ -23,6 +24,30 @@ b = requests.get(URL3)
 filepath = 'D:/priv_repo/test/Python/dl.xls'
 filepath2 = 'D:/priv_repo/test/Python/dl.txt'
 filepath3 ="D:/priv_repo/test/Python/bazalosl.zip"
+liczby = []
+ileliczb =6
+maksliczba=49
+i =0 
+while i< ileliczb:
+    liczba = random.randint(1,maksliczba)
+    if liczby.count(liczba) == 0 :
+        liczby.append(liczba)
+        i= i + 1
+print ("Wylosowane liczby to :", liczby )
+def losowanie_liczb():
+    liczby = []
+    ileliczb =6
+    maksliczba=49
+    i =0 
+
+    while i< ileliczb:
+        liczba = random.randint(1,maksliczba)
+        if liczby.count(liczba) == 0 :
+            liczby.append(liczba)
+            i= i + 1
+
+    print ("Wylosowane liczby to :", liczby )
+
 
 def data_from_excel(filepath):
     data_list = []
@@ -52,8 +77,9 @@ print ("Worksheet name(s):", file_1.sheet_names())
 sh = file_1.sheet_by_index(0)
 print(sh.name, sh.nrows, sh.ncols)
 print ("Cell D30 is", sh.cell_value(rowx=29, colx=3))
-lista = sh.col_values(-6)[:-6]
+lista = sh.col_values(-1)[-20:] # ostatnia kolumna w arkuszu
 print (lista)
+print(len(lista))
 '''
 rx= 1
 for rx   in range(sh.nrows):
@@ -61,11 +87,19 @@ for rx   in range(sh.nrows):
 '''
 for sheet_name in file_1.sheet_names():
     arkusz = file_1.sheet_by_name(sheet_name)
-    print (arkusz.row_values(-1)[4],)
-    print (arkusz.row_values(-1)[2:],)
-    print (arkusz.row_values(-1)[4],)
+    wiersz_ost = arkusz.row_values(-1)[2:]
+    wiersz_przed_osta = arkusz.row_values(-2)[2:]
+    wiersz_20_od_konca = arkusz.row_values(-20)[2:]
+
+    porównanie = list(set(wiersz_ost).intersection(set(wiersz_przed_osta)))
+
+    print("Ostatnie losowanie...", wiersz_ost)
+    print("Wiersz przedostatni", wiersz_przed_osta)
+    print("Wiersz 20 od końca to ", wiersz_20_od_konca)
+    print ("ta sama liczba to : ", porównanie)
     print(arkusz.name)
     
+
 
 
 #f.read(8)
