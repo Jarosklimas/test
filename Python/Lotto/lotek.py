@@ -73,23 +73,46 @@ with open(filepath2, 'wb') as f2:
     f2.close
 with open(filepath3, 'wb') as f3:
     f3.write(b.content)
-    f3.close
+    f3.close 
 '''
 # "D:/priv_repo/test/Python/dl.xls"
-file_1 = xlrd.open_workbook("C:/repozytorium/test/Python/dl.xls")
+#"C:/repozytorium/test/Python/dl.xls"
+file_1 = xlrd.open_workbook("D:/priv_repo/test/Python/dl.xls")
 print("The number of worksheets is", file_1.nsheets)
 print("Worksheet name(s):", file_1.sheet_names())
 sh = file_1.sheet_by_index(0)
+
+for rowx in range(-6, 0):
+    licz_cyfre = 1
+    if licz_cyfre <=49:
+        licz_cyfre = 1
+        cyfra = sh.col_values(rowx)[-20:]
+        licz=cyfra.count(licz_cyfre)
+        print("Kolumna  to :",rowx, cyfra)
+        print("1\n",licz)
+        licz_cyfre = licz_cyfre +1
+
 print(sh.name, sh.nrows, sh.ncols)
 print("Cell D30 is", sh.cell_value(rowx=29, colx=3))
-lista = sh.col_values(-1)[-20:]  # ostatnia kolumna w arkuszu
-print("20 cyfr z ostatniej kolumny", lista)
-print(len(lista))
-'''
-rx= 1
-for rx   in range(sh.nrows):
-    print (sh.row(rx))
-'''
+ilosc_column = -6
+licz_cyfre = 1
+
+    
+while ilosc_column <= -1:
+    lista = sh.col_values(ilosc_column)[-20:]  # ostatnia kolumna w arkuszu
+    print ("jest to kolumna :", ilosc_column)
+    
+    licz_cyfre = 1
+    while licz_cyfre <= 49  :
+        wynik = lista.count(licz_cyfre)
+        print("Liczba ", licz_cyfre, " w kolumnie ",ilosc_column,"jest", wynik )
+        licz_cyfre = licz_cyfre +1
+    ilosc_column = ilosc_column +1 
+ 
+print ("                                 **************\tIlosc kolumn równa sie :\t", ilosc_column," Licznik przestaje liczyć ilość wystąpienia poszczególnych liczb **************")
+
+print("Wierszy jest :", len(lista))
+
 for sheet_name in file_1.sheet_names():
     arkusz = file_1.sheet_by_name(sheet_name)
 rx = -20
@@ -102,10 +125,9 @@ while i < 20:
     if (rx < 1):
         rx = rx + 1
         i = i+1
-
 for element in losowanie.flat:
-
-    print(element)
+            #jedynka= element.count(1)
+            print()
 
 
 wiersz_ost = arkusz.row_values(-1)[2:]
@@ -116,11 +138,11 @@ print(macierz)
 
 porównanie = list(set(wiersz_ost).intersection(set(wiersz_przed_osta)))
 
-print("Ostatnie losowanie...", wiersz_ost)
-print("Wiersz przedostatni", wiersz_przed_osta)
-print("Wiersz 20 od końca to ", wiersz_20_od_konca)
-print("ta sama liczba w dwóch ostatnich losowaniach to  : ", porównanie)
-print(arkusz.name)
+print("\n\n\nOstatnie losowanie \t\t\t\t : ", wiersz_ost)
+print("Przedostatnie losowanie to\t\t\t : ", wiersz_przed_osta)
+print("Ta sama liczba w dwóch ostatnich losowaniach to  : ", porównanie)
+
+#print(arkusz.name)
 
 # f.read(8)
 # URL = 'http://www.mbnet.com.pl/wyniki.htm'
