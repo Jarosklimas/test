@@ -112,6 +112,7 @@ wiersz_ost = arkusz.row_values(-1)[2:]
 wiersz_przed_osta = arkusz.row_values(-2)[2:]
 wiersz_20_od_konca = arkusz.row_values(-20)[2:]
 macierz = np.arange(49).reshape(7, 7)
+
 print(macierz)
 
 porównanie = list(set(wiersz_ost).intersection(set(wiersz_przed_osta)))
