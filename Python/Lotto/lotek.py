@@ -102,6 +102,7 @@ ilosc_column = -6
 licz_cyfre = 1
 liczniki_19 = []
 y = 0 
+cunter = []
 while ilosc_column <= -1:
     lista = sh.col_values(ilosc_column)[-20:]  # ostatnia kolumna w arkuszuS
     print ("jest to kolumna :", ilosc_column)
@@ -109,21 +110,23 @@ while ilosc_column <= -1:
     
     while licz_cyfre <= 49  :
         wynik = lista.count(licz_cyfre)
-        #print("Liczba ", licz_cyfre, " w kolumnie ",ilosc_column,"jest", wynik )
+        print("Liczb nr ", licz_cyfre, " w kolumnie ",ilosc_column,"jest", wynik )
         #liczniki_19.append(wynik)
         #print ("to jest pierwszy  licznik_19 ",liczniki_19)
         
         licz_wynik = list(range(wynik))
-        print ("To jest licznik wyniku",licz_cyfre, licz_wynik)
+        cunter.append(wynik)
+        print ("To jest licznik wyniku",licz_cyfre, licz_wynik, "\n")
         licz_cyfre = licz_cyfre +1
-    ilosc_column = ilosc_column +1 
+    ilosc_column = ilosc_column +1
+    print (cunter) 
     
     
-    for i in range (licz_cyfre):
+    for licz_cyfre in range (wynik):
         liczniki_19.append(wynik)
-        print ("to jest licznik_19 ",liczniki_19)
-    for i in range(licz_cyfre):
-            y = y + liczniki_19[i]
+        #print ("to jest licznik_19 ",liczniki_19)
+    for licz_cyfre in range(wynik):
+            y = y + liczniki_19[licz_wynik]
 print("Suma wartosci elementów  listy to {0}".format(y))
 
 print ("                                 **************\tIlosc kolumn równa sie :\t", ilosc_column," Licznik przestaje liczyć ilość wystąpienia poszczególnych liczb **************")
