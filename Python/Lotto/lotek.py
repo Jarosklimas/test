@@ -11,7 +11,7 @@ import xlrd
 import pandas as pd
 import numpy as np
 import random
-
+from openpyxl import load_workbook
 #----------------------------------------------------------------------To jest sekcja do pobierania  danych oraz zczytywania ----------------------------------------------------------------------
 URL = "http://www.mbnet.com.pl/dl.xls"
 URL2 = "http://www.mbnet.com.pl/dl.txt"
@@ -75,15 +75,16 @@ def data_from_excel(filepath):
 
     for i in range(sheet.nrows):
         data_list.append(sheet.cell_value(i, 0))
-    return print(data_list)
+    print("Tutaj sa dane ",data_list)
 
 
 # "D:/priv_repo/test/Python/dl.xls"
 #"C:/repozytorium/test/Python/dl.xls"
-file_1 = xlrd.open_workbook("D:/priv_repo/test/Python/dl.xls")
+file_1 = xlrd.open_workbook("C:/repozytorium/test/Python/dl.xls")
 print("The number of worksheets is", file_1.nsheets)
 print("Worksheet name(s):", file_1.sheet_names())
 sh = file_1.sheet_by_index(0)
+
 #--------------------------------------------------------------------------------------wyświetlenie kolumn w postaci wierszy ------------------------------------------------------------
 for rowx in range(-6, 0):
     licz_cyfre = 1
@@ -105,21 +106,19 @@ y = 0
 cunter = []
 while ilosc_column <= -1:
     lista = sh.col_values(ilosc_column)[-20:]  # ostatnia kolumna w arkuszuS
-    print ("jest to kolumna :", ilosc_column)
     licz_cyfre = 1
-    
+
     while licz_cyfre <= 49  :
         wynik = lista.count(licz_cyfre)
         print("Liczb nr ", licz_cyfre, " w kolumnie ",ilosc_column,"jest", wynik )
-        #liczniki_19.append(wynik)
-        #print ("to jest pierwszy  licznik_19 ",liczniki_19)
-        
-        licz_wynik = list(range(wynik))
         cunter.append(wynik)
-        print ("To jest licznik wyniku",licz_cyfre, licz_wynik, "\n")
         licz_cyfre = licz_cyfre +1
+
+        #licz_wynik = list(range(wynik))
+        #print ("To jest licznik wyniku",licz_cyfre, licz_wynik, "\n")
+        
     ilosc_column = ilosc_column +1
-    print (cunter) 
+    #print (cunter) 
     
     
     for licz_cyfre in range (wynik):
@@ -129,16 +128,34 @@ while ilosc_column <= -1:
             y = y + liczniki_19[licz_wynik]
 print("Suma wartosci elementów  listy to {0}".format(y))
 
-print ("                                 **************\tIlosc kolumn równa sie :\t", ilosc_column," Licznik przestaje liczyć ilość wystąpienia poszczególnych liczb **************")
-print("Ilość 19 to :", liczniki_19)
-print("Wierszy jest :", len(lista))
+print ("\n\n\n                 **************\tIlosc kolumn równa sie :\t", ilosc_column," Licznik przestaje liczyć ilość wystąpienia poszczególnych liczb **************\n\n\n")
 
+print("Wierszy jest :", len(lista))
+moja_lista_1 = cunter[:49]
+moja_lista_2 = cunter[49:98]
+moja_lista_3 = cunter[98:147]
+moja_lista_4 = cunter[147:196]
+moja_lista_5 = cunter[196:245]
+moja_lista_6 = cunter[245:294]
+print("To jest pierwsza kolumna (-6) z ilości wystapienia każdej liczby(1-49) \n", moja_lista_1,"wszystkich liczb jest",len(moja_lista_1))
+print("To jest druga kolumna (-5) z  ilości wystapienia każdej liczby(1-49)\n", moja_lista_2,"wszystkich liczb jest",len(moja_lista_2))
+print("To jest trzecia kolumna (-4) z  ilości wystapienia każdej liczby(1-49)\n", moja_lista_3,"wszystkich liczb jest",len(moja_lista_3))
+print("To jest druga kolumna (-3) z  ilości wystapienia każdej liczby(1-49)\n", moja_lista_4,"wszystkich liczb jest",len(moja_lista_4))
+print("To jest druga kolumna (-2) z  ilości wystapienia każdej liczby(1-49)\n", moja_lista_5,"wszystkich liczb jest",len(moja_lista_5))
+print("To jest druga kolumna (-1) z  ilości wystapienia każdej liczby(1-49)\n", moja_lista_6,"wszystkich liczb jest",len(moja_lista_6))
+jedynki=moja_lista_1[0]+moja_lista_2[0]+moja_lista_3[0]+moja_lista_4[0]+moja_lista_5[0]+moja_lista_6[0]
+dwójki=moja_lista_1[1]+moja_lista_2[1]+moja_lista_3[1]+moja_lista_4[1]+moja_lista_5[1]+moja_lista_6[1]
+trójki=moja_lista_1[2]+moja_lista_2[2]+moja_lista_3[2]+moja_lista_4[2]+moja_lista_5[2]+moja_lista_6[2]
+print("wszystkich 1 w ostatnich ",len(lista),"losowaniach było :", jedynki)
+print("wszystkich 2 w ostatnich ",len(lista),"losowaniach było :", dwójki)
+print("wszystkich 3 w ostatnich ",len(lista),"losowaniach było :", trójki)
 for sheet_name in file_1.sheet_names():
     arkusz = file_1.sheet_by_name(sheet_name)
 # ------------------------------------------------ robi macierz z konketynch 20 wierszy ----------------------------------------------------------------------------------------------------------
 '''
 rx = -20
 i = 0
+licznik =3
 while i < 20:
     wiersz = arkusz.row_values(rx)[2:]
     #print("to jest wiersz  ", rx, "które mają wartość", wiersz)
@@ -147,12 +164,13 @@ while i < 20:
     if (rx < 1):
         rx = rx + 1
         i = i+1
-for element in losowanie.flat:
-            #jedynka= element.count(1)
-            print()
-'''
+for i in losowanie.flat:
+	#jedynka=licznik.count(licznik)
+	print()
 
+'''
 # ---------------------------------------------------- koniec---------------------------------------------------------------------------------------------------------------------------------------
+
 wiersz_ost = arkusz.row_values(-1)[2:]
 wiersz_przed_osta = arkusz.row_values(-2)[2:]
 wiersz_20_od_konca = arkusz.row_values(-20)[2:]
