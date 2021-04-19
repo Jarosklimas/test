@@ -11,7 +11,7 @@ import xlrd
 import pandas as pd
 import numpy as np
 import random
-from openpyxl import load_workbook
+
 #----------------------------------------------------------------------To jest sekcja do pobierania  danych oraz zczytywania ----------------------------------------------------------------------
 URL = "http://www.mbnet.com.pl/dl.xls"
 URL2 = "http://www.mbnet.com.pl/dl.txt"
@@ -80,7 +80,7 @@ def data_from_excel(filepath):
 
 # "D:/priv_repo/test/Python/dl.xls"
 #"C:/repozytorium/test/Python/dl.xls"
-file_1 = xlrd.open_workbook("C:/repozytorium/test/Python/dl.xls")
+file_1 = xlrd.open_workbook("D:/priv_repo/test/Python/dl.xls")
 print("The number of worksheets is", file_1.nsheets)
 print("Worksheet name(s):", file_1.sheet_names())
 sh = file_1.sheet_by_index(0)
@@ -96,7 +96,7 @@ for rowx in range(-6, 0):
         licz_cyfre = licz_cyfre +1
 #--------------------------------------------------------------------------------------koniec-----------------------------------------------------------------------------------------
 print(sh.name, sh.nrows, sh.ncols)
-print("Cell D30 is", sh.cell_value(rowx=29, colx=3))
+#print("Cell D30 is", sh.cell_value(rowx=29, colx=3))
 
 
 ilosc_column = -6
@@ -110,7 +110,7 @@ while ilosc_column <= -1:
 
     while licz_cyfre <= 49  :
         wynik = lista.count(licz_cyfre)
-        print("Liczb nr ", licz_cyfre, " w kolumnie ",ilosc_column,"jest", wynik )
+        #print("Liczb nr ", licz_cyfre, " w kolumnie ",ilosc_column,"jest", wynik )
         cunter.append(wynik)
         licz_cyfre = licz_cyfre +1
 
@@ -146,9 +146,20 @@ print("To jest druga kolumna (-1) z  ilości wystapienia każdej liczby(1-49)\n"
 jedynki=moja_lista_1[0]+moja_lista_2[0]+moja_lista_3[0]+moja_lista_4[0]+moja_lista_5[0]+moja_lista_6[0]
 dwójki=moja_lista_1[1]+moja_lista_2[1]+moja_lista_3[1]+moja_lista_4[1]+moja_lista_5[1]+moja_lista_6[1]
 trójki=moja_lista_1[2]+moja_lista_2[2]+moja_lista_3[2]+moja_lista_4[2]+moja_lista_5[2]+moja_lista_6[2]
-print("wszystkich 1 w ostatnich ",len(lista),"losowaniach było :", jedynki)
-print("wszystkich 2 w ostatnich ",len(lista),"losowaniach było :", dwójki)
-print("wszystkich 3 w ostatnich ",len(lista),"losowaniach było :", trójki)
+#print("wszystkich 1 w ostatnich ",len(lista),"losowaniach było :", jedynki)
+#print("wszystkich 2 w ostatnich ",len(lista),"losowaniach było :", dwójki)
+#print("wszystkich 3 w ostatnich ",len(lista),"losowaniach było :", trójki)
+i=0
+win =[]
+os_x =[]
+while i < 49:
+
+	win=moja_lista_1[i]+moja_lista_2[i]+moja_lista_3[i]+moja_lista_4[i]+moja_lista_5[i]+moja_lista_6[i]
+	print("Wszystkich",i+1, "w ostatnich 20 losowaniach jest :", win)
+	os_x.append(win)
+	i=i+1
+print("To jest os X (ilość wystąpienia kazdej liczby od 1 do 49) w ", len(lista), "losowaniach :\n", os_x)
+
 for sheet_name in file_1.sheet_names():
     arkusz = file_1.sheet_by_name(sheet_name)
 # ------------------------------------------------ robi macierz z konketynch 20 wierszy ----------------------------------------------------------------------------------------------------------
