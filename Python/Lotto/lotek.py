@@ -101,7 +101,6 @@ print(sh.name, sh.nrows, sh.ncols)
 
 ilosc_column = -6
 licz_cyfre = 1
-liczniki_19 = []
 y = 0 
 cunter = []
 while ilosc_column <= -1:
@@ -120,12 +119,6 @@ while ilosc_column <= -1:
     ilosc_column = ilosc_column +1
     #print (cunter) 
     
-    
-    for licz_cyfre in range (wynik):
-        liczniki_19.append(wynik)
-        #print ("to jest licznik_19 ",liczniki_19)
-    for licz_cyfre in range(wynik):
-            y = y + liczniki_19[licz_wynik]
 print("Suma wartosci elementów  listy to {0}".format(y))
 
 print ("\n\n\n                 **************\tIlosc kolumn równa sie :\t", ilosc_column," Licznik przestaje liczyć ilość wystąpienia poszczególnych liczb **************\n\n\n")
@@ -143,22 +136,41 @@ print("To jest trzecia kolumna (-4) z  ilości wystapienia każdej liczby(1-49)\
 print("To jest druga kolumna (-3) z  ilości wystapienia każdej liczby(1-49)\n", moja_lista_4,"wszystkich liczb jest",len(moja_lista_4))
 print("To jest druga kolumna (-2) z  ilości wystapienia każdej liczby(1-49)\n", moja_lista_5,"wszystkich liczb jest",len(moja_lista_5))
 print("To jest druga kolumna (-1) z  ilości wystapienia każdej liczby(1-49)\n", moja_lista_6,"wszystkich liczb jest",len(moja_lista_6))
-jedynki=moja_lista_1[0]+moja_lista_2[0]+moja_lista_3[0]+moja_lista_4[0]+moja_lista_5[0]+moja_lista_6[0]
-dwójki=moja_lista_1[1]+moja_lista_2[1]+moja_lista_3[1]+moja_lista_4[1]+moja_lista_5[1]+moja_lista_6[1]
-trójki=moja_lista_1[2]+moja_lista_2[2]+moja_lista_3[2]+moja_lista_4[2]+moja_lista_5[2]+moja_lista_6[2]
-#print("wszystkich 1 w ostatnich ",len(lista),"losowaniach było :", jedynki)
-#print("wszystkich 2 w ostatnich ",len(lista),"losowaniach było :", dwójki)
-#print("wszystkich 3 w ostatnich ",len(lista),"losowaniach było :", trójki)
+# ------------------------------------------------Ile razy wystepuje dana liczba w 'X' losowaniach dodwanie wartościz wszystkich poszczególnych kolumn--------------------------------------------------	
 i=0
 win =[]
 os_x =[]
 while i < 49:
 
 	win=moja_lista_1[i]+moja_lista_2[i]+moja_lista_3[i]+moja_lista_4[i]+moja_lista_5[i]+moja_lista_6[i]
-	print("Wszystkich",i+1, "w ostatnich 20 losowaniach jest :", win)
+	#print("Wszystkich",i+1, "w ostatnich 20 losowaniach jest :", win)
 	os_x.append(win)
 	i=i+1
+
 print("To jest os X (ilość wystąpienia kazdej liczby od 1 do 49) w ", len(lista), "losowaniach :\n", os_x)
+#os=list(enumerate(os_x,start=1))
+#print(os)
+# ------------------------------------------------koniec ile razy wystepuje dana liczba w 'X' losowaniach ----------------------------------------------------------------------------------------------	
+# ------------------------------------------------Obliczanie maximum -----------------------------------------------------------------------------------------------------------------------------------
+print("Najwięcej, bo aż ", max(os_x), "razy  padły", os_x.count(max(os_x)), "liczby. Są to :  " )
+#(os_x.index(max(os_x)))+1
+maksimum = max(os_x)
+for index , value in enumerate (os_x,start=1):
+	if value == maksimum:
+		print('{} - {}'.format(index, value))
+
+# ------------------------------------------------koniec maximum ----------------------------------------------------------------------------------------------------------	
+
+# ------------------------------------------------Obliczanie minimum ----------------------------------------------------------------------------------------------------------	
+print("Najmniej, bo aż ", min(os_x), "razy  padły", os_x.count(min(os_x)), "liczby. Są to :  " )
+minimum = min (os_x)
+for index , value in enumerate (os_x,start=1):
+	if value == minimum:
+		print('{} - {}'.format(index, value))
+# ------------------------------------------------ koniec minimum -------------------------------------------------------------------------------------------------------------
+os_x_str=''
+for i in os_x:
+	os_x_str +=str(i)
 
 for sheet_name in file_1.sheet_names():
     arkusz = file_1.sheet_by_name(sheet_name)
