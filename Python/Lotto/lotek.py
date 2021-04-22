@@ -80,7 +80,7 @@ def data_from_excel(filepath):
 
 # "D:/priv_repo/test/Python/dl.xls"
 #"C:/repozytorium/test/Python/dl.xls"
-file_1 = xlrd.open_workbook("D:/priv_repo/test/Python/dl.xls")
+file_1 = xlrd.open_workbook("C:/repozytorium/test/Python/dl.xls")
 print("The number of worksheets is", file_1.nsheets)
 print("Worksheet name(s):", file_1.sheet_names())
 sh = file_1.sheet_by_index(0)
@@ -104,7 +104,7 @@ licz_cyfre = 1
 y = 0 
 cunter = []
 while ilosc_column <= -1:
-    lista = sh.col_values(ilosc_column)[-20:]  # ostatnia kolumna w arkuszuS
+    lista = sh.col_values(ilosc_column)[-30:]  # ostatnia kolumna w arkuszuS
     licz_cyfre = 1
 
     while licz_cyfre <= 49  :
@@ -167,6 +167,16 @@ minimum = min (os_x)
 for index , value in enumerate (os_x,start=1):
 	if value == minimum:
 		print('{} - {}'.format(index, value))
+
+jed = max(os_x)-1
+while jed > 0:
+	print("troszkę wiecej, bo aż ", jed, "razy  padły", os_x.count(jed), "liczby. Są to :  " )
+	for index , value in enumerate (os_x,start=1):
+		if value == jed:
+			print('{} - {}'.format(index, value))
+	jed= jed -1
+
+
 # ------------------------------------------------ koniec minimum -------------------------------------------------------------------------------------------------------------
 os_x_str=''
 for i in os_x:
@@ -175,7 +185,7 @@ for i in os_x:
 for sheet_name in file_1.sheet_names():
     arkusz = file_1.sheet_by_name(sheet_name)
 # ------------------------------------------------ robi macierz z konketynch 20 wierszy ----------------------------------------------------------------------------------------------------------
-'''
+
 rx = -20
 i = 0
 licznik =3
@@ -191,7 +201,7 @@ for i in losowanie.flat:
 	#jedynka=licznik.count(licznik)
 	print()
 
-'''
+
 # ---------------------------------------------------- koniec---------------------------------------------------------------------------------------------------------------------------------------
 
 wiersz_ost = arkusz.row_values(-1)[2:]
