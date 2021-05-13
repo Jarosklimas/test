@@ -21,17 +21,17 @@ response = requests.get(URL)
 r = requests.get(URL2)
 b = requests.get(URL3)
 
-filepath = "C:/repozytorium/test/Python/dl.xls"
+filepath = "D:/priv_repo/test/Python/dl.xls"
 #filepath2 = 'D:/priv_repo/test/Python/dl.txt'
 #filepath3 = "D:/priv_repo/test/Python/bazalosl.zip"
 
-'''
+
 with open(filepath, 'wb') as f:
     f.write(response.content)
     f.close
 # otwarcie pliku
-# file_1 = xlwt.Workbook(encoding="utf-8")
-
+file_1 = xlwt.Workbook(encoding="utf-8")
+'''
 with open(filepath2, 'wb') as f2:
     f2.write(r.content)
     f2.close
@@ -54,7 +54,7 @@ def data_from_excel(filepath):
 
 # "D:/priv_repo/test/Python/dl.xls"
 #"C:/repozytorium/test/Python/dl.xls"
-file_1 = xlrd.open_workbook("C:/repozytorium/test/Python/dl.xls")
+file_1 = xlrd.open_workbook("D:/priv_repo/test/Python/dl.xls")
 print("The number of worksheets is", file_1.nsheets)
 print("Worksheet name(s):", file_1.sheet_names())
 sh = file_1.sheet_by_index(0)
@@ -187,8 +187,9 @@ wiersz_20_od_konca = arkusz.row_values(-20)[2:]
 porównanie = list(set(wiersz_ost).intersection(set(wiersz_przed_osta)))
 b = [int(i) for i in porównanie]
 print(b)
-print("\n\n\nOstatnie losowanie z dnia :", wiersz_ost_data, " \t\t : ", wiersz_ost)
+
 print("Przedostatnie losowanie to\t\t\t\t\t\t : ", wiersz_przed_osta)
+print("\n\n\nOstatnie losowanie z dnia :", wiersz_ost_data, " \t\t : ", wiersz_ost)
 print("Ta sama liczba w dwóch ostatnich losowaniach to  : ", porównanie)
 print(max(os_x))
 
