@@ -1,5 +1,26 @@
-MainWidget:
+BoxLayoutExample:
 
+
+<BoxLayoutExample>:
+    orientation: 'horizontal'
+
+    Button:
+        text: "A"
+
+        size_hint: .5, .5
+        #size: "100dp", "60dp"
+        #width: "100dp"
+        #height: "60dp"
+        # x, center_x, right    # horizontal    
+        # y, center_y, top      # vertical
+        pos_hint: {'top': 1 } 
+  
+    Button:
+        text: "B"
+        #size_hint: 1, 2
+
+    Label:
+        text: "C"
 
 <MainWidget>:
     Button:
