@@ -20,7 +20,7 @@ response = requests.get(URL)
 
 r = requests.get(URL2)
 b = requests.get(URL3)
-
+'''
 filepath = "D:/priv_repo/test/Python/dl.xls"
 #filepath2 = 'D:/priv_repo/test/Python/dl.txt'
 #filepath3 = "D:/priv_repo/test/Python/bazalosl.zip"
@@ -31,7 +31,7 @@ with open(filepath, 'wb') as f:
     f.close
 # otwarcie pliku
 file_1 = xlwt.Workbook(encoding="utf-8")
-'''
+
 with open(filepath2, 'wb') as f2:
     f2.write(r.content)
     f2.close
@@ -78,7 +78,7 @@ licz_cyfre = 1
 y = 0 
 cunter = []
 while ilosc_column <= -1:
-    lista = sh.col_values(ilosc_column)[-13:]  # ostatnia kolumna w arkuszu
+    lista = sh.col_values(ilosc_column)[-37:]  # ostatnia kolumna w arkuszu
     licz_cyfre = 1
     print("To jest lista",lista)
 
@@ -197,7 +197,7 @@ print(max(os_x))
 #----------------------------------------------------------------------To jest sekcja do losowania liczb----------------------------------------------------------------------
 def losowanie_liczb():
     liczby = []
-    ileliczb = 6
+    ileliczb = 36
     maksliczba = 49
     i = 0
 
@@ -209,10 +209,11 @@ def losowanie_liczb():
             liczby.append(liczba)
             c = list(set(liczby).intersection(set(porównanie)))
             d = list(set(liczby).intersection(set(wiersz_ost)))
+            e = list(set(liczby).intersection(set(wiersz_przed_osta)))
             #print(liczby)
             #print(type(b[1]))
             #print(c)
-            if c or d :											#wyrzuca z wylosowanych liczb ostanie losowane oraz liczby wspólne dla 2 ostatnich losowań
+            if c or d or e:											#wyrzuca z wylosowanych liczb ostanie losowane oraz liczby wspólne dla 2 ostatnich losowań
             	del liczby [-1]
             	#print("hello")
             	#print(liczby)
@@ -220,7 +221,21 @@ def losowanie_liczb():
             i = i + 1
 
 
-    print("Wylosowane liczby to :", liczby)
+    #print("Wylosowane liczby to :", liczby)
+    losowaniePierwsze = liczby[0:6]
+    losowanieDrugie = liczby[6:12]
+    losowanieTrzecie = liczby[12:18]
+    losowanieCzwarte = liczby[18:24]
+    losowaniePiate = liczby[24:30]
+    losowanieSzoste = liczby[30:36]
+
+    print ("To jest losowanie nr 1",losowaniePierwsze)
+    print ("To jest losowanie nr 2",losowanieDrugie)
+    print ("To jest losowanie nr 3",losowanieTrzecie)
+    print ("To jest losowanie nr 4",losowanieCzwarte)
+    print ("To jest losowanie nr 5",losowaniePiate)
+    print ("To jest losowanie nr 6",losowanieSzoste)
+
 
 losowanie_liczb()
 
