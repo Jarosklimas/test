@@ -23,18 +23,27 @@ response = requests.get(URL)
 r = requests.get(URL2)
 b = requests.get(URL3)
 
-filepath = "C:/repozytorium/test/Python/dl.xls"
+lokalizacja = int(input(
+    "Podaj miejsce zapisu do liku dl :  \n 1 ) C:/repozytorium/test/Python/dl.xls \n 2 ) D:/priv_repo/test/Python/dl.txt \n"))
+
+if lokalizacja == 1:
+    filepath = "C:/repozytorium/test/Python/dl.xls"
+
+else:
+    filepath = "D:/priv_repo/test/Python/dl.xls"
+
+print(filepath)
 # filepath2 = 'D:/priv_repo/test/Python/dl.txt'
 # filepath3 = "D:/priv_repo/test/Python/bazalosl.zip"
 
-'''
+
 with open(filepath, 'wb') as f:
     f.write(response.content)
     f.close
 
 # otwarcie pliku
 file_1 = xlwt.Workbook(encoding="utf-8")
-
+'''
 with open(filepath2, 'wb') as f2:
     f2.write(r.content)
     f2.close
@@ -58,7 +67,11 @@ def data_from_excel(filepath):
 
 # "D:/priv_repo/test/Python/dl.xls"
 # "C:/repozytorium/test/Python/dl.xls"
-file_1 = xlrd.open_workbook("C:/repozytorium/test/Python/dl.xls")
+if lokalizacja == 1:
+    file_1 = xlrd.open_workbook("C:/repozytorium/test/Python/dl.xls")
+else:
+    file_1 = xlrd.open_workbook("D:/priv_repo/test/Python/dl.xls")
+#file_1 = xlrd.open_workbook(filename=filepath)
 print("The number of worksheets is", file_1.nsheets)
 print("Worksheet name(s):", file_1.sheet_names())
 sh = file_1.sheet_by_index(0)
@@ -229,21 +242,26 @@ def losowanie_liczb():
             liczby.append(liczba)
             c = list(set(liczby).intersection(set(porównanie)))
             d = list(set(liczby).intersection(set(wiersz_ost)))
+            e = list(set(liczby).intersection(set(wiersz_przed_osta)))
             # print(liczby)
             # print(type(b[1]))
             # print(c)
-            if c or d:  # wyrzuca z wylosowanych liczb ostanie losowane oraz liczby wspólne dla 2 ostatnich losowań
+            if c or d or e:  # wyrzuca z wylosowanych liczb ostanie losowane oraz liczby wspólne dla 2 ostatnich losowań
                 del liczby[-1]
                 # print("hello")
                 # print(liczby)
                 i = i - 1
-            i = i + 1
 
+            i = i + 1
+            for index, value in enumerate(os_x, start=1):
+                if index == liczba:
+                    print('{} - {}'.format(index, value))
     print("Wylosowane liczby to :", liczby)
 
 
 losowanie_liczb()
 plt.bar(z, os_x, color='red')
+#plt.bar(k, os_x, color='blue')
 plt.show()
 # --------------------------------------------------------------------------------------koniec-----------------------------------------------------------------------------------------
 
