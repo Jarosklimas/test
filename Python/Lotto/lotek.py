@@ -32,7 +32,6 @@ if lokalizacja == 1:
 else:
     filepath = "D:/priv_repo/test/Python/dl.xls"
 
-print(filepath)
 # filepath2 = 'D:/priv_repo/test/Python/dl.txt'
 # filepath3 = "D:/priv_repo/test/Python/bazalosl.zip"
 
@@ -41,7 +40,7 @@ with open(filepath, 'wb') as f:
     f.write(response.content)
     f.close
 
-# otwarcie pliku
+# otwarcie pliku i kodowanie arkusza
 file_1 = xlwt.Workbook(encoding="utf-8")
 '''
 with open(filepath2, 'wb') as f2:
@@ -64,9 +63,6 @@ def data_from_excel(filepath):
         data_list.append(sheet.cell_value(i, 0))
     print("Tutaj sa dane ", data_list)
 
-
-# "D:/priv_repo/test/Python/dl.xls"
-# "C:/repozytorium/test/Python/dl.xls"
 if lokalizacja == 1:
     file_1 = xlrd.open_workbook("C:/repozytorium/test/Python/dl.xls")
 else:
@@ -229,14 +225,14 @@ print(max(os_x))
 # ----------------------------------------------------------------------To jest sekcja do losowania liczb----------------------------------------------------------------------
 def losowanie_liczb():
     liczby = []
-    ileliczb = 36
+    ileliczb = 6
     maksliczba = 49
     i = 0
 
     while i < ileliczb:
         liczba = random.randint(1, maksliczba)
 
-        # jesli liczba wystepuje 0 razy w liczby to dodaje ją do listy liczby
+        # jesli liczba wystepuje 0 razy w liscie "liczby" to dodaje ją do listy liczby
         if liczby.count(liczba) == 0:
 
             liczby.append(liczba)
@@ -248,17 +244,22 @@ def losowanie_liczb():
             # print(c)
             if c or d or e:  # wyrzuca z wylosowanych liczb ostanie losowane oraz liczby wspólne dla 2 ostatnich losowań
                 del liczby[-1]
+                
                 # print("hello")
                 # print(liczby)
                 i = i - 1
-
             i = i + 1
-            for index, value in enumerate(os_x, start=1):
-                if index == liczba:
-                    print('{} - {}'.format(index, value))
+            
+        
     print("Wylosowane liczby to :", liczby)
-
-
+ 
+    l=0
+    while l <= ileliczb-1:
+        kule=liczby[l]
+        for index, value in enumerate(os_x, start=1):
+            if index == kule:
+                print('{} - {}'.format(index, value))
+                l=l+1 
 losowanie_liczb()
 plt.bar(z, os_x, color='red')
 #plt.bar(k, os_x, color='blue')
@@ -274,25 +275,8 @@ print(macierz)
 # -------------------------------------------------------koniec-------------------------------------------------------------------------------------------------------------------
 
 
-# print(arkusz.name)
-
-# f.read(8)
-# URL = 'http://www.mbnet.com.pl/wyniki.htm'
-
-# page = get (URL)
-# bs = BeautifulSoup(page.content)
-
-# for offer in bs.find_all('a'):
-#    print(offer)
-# print(page.content)
-
 
 '''
-# kodowanie arkusza
-baza = xlwt.Workbook(encoding="utf-8")
-
-
-
 
 # tworze konkretną ilość arkuszy
 sheet1 = baza.add_sheet("Wyniki")
