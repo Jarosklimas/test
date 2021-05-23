@@ -94,7 +94,7 @@ y = 0
 cunter = []
 
 while ilosc_column <= -1:
-    lista = sh.col_values(ilosc_column)[-11:-1]  # ostatnia kolumna w arkuszu
+    lista = sh.col_values(ilosc_column)[-14:]  # ostatnia kolumna w arkuszu
     licz_cyfre = 1
     print("To jest lista", lista)
     while licz_cyfre <= 49:
@@ -185,33 +185,26 @@ z = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 
      26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49]
 
 
-os_x_str = ''
-for i in os_x:
-    os_x_str += str(i)
-
 for sheet_name in file_1.sheet_names():
     arkusz = file_1.sheet_by_name(sheet_name)
 # ------------------------------------------------ robi macierz z konketynch 20 wierszy ----------------------------------------------------------------------------------------------------------
-'''
+
 rx = -(len(lista))
 i = 0												# tutaj mozesz podać na kótrym wierszu ma sie zakończyć licząc od dołu w pliku dl
-licznik =3
-while i < len(lista) :
+licznik = 3
+while i < len(lista):
     wiersz = arkusz.row_values(rx)[2:]
-    # print("to jest wiersz  ", rx, "które mają wartość", wiersz)
     losowanie = np.array(wiersz)
     print(losowanie)
     if (rx < 1):
         rx = rx + 1
-        i = i+1
-for i in losowanie.flat:
-	# jedynka=licznik.count(licznik)
-	print()
+        i = i + 1
 
-'''
+
 # ---------------------------------------------------- koniec---------------------------------------------------------------------------------------------------------------------------------------
 
 wiersz_ost = arkusz.row_values(-1)[2:]
+
 wiersz_ost_data = arkusz.row_values(-1)[-7]
 wiersz_przed_osta = arkusz.row_values(-2)[2:]
 wiersz_20_od_konca = arkusz.row_values(-20)[2:]
@@ -222,6 +215,15 @@ print(b)
 
 print("Przedostatnie losowanie to\t\t\t\t\t\t : ", wiersz_przed_osta)
 print("Ostatnie losowanie z dnia :", wiersz_ost_data, " \t\t : ", wiersz_ost)
+
+k = 2
+while k < 8:
+    kule_ostatnie = arkusz.row_values(-4)[k]
+    for index, value in enumerate(os_x, start=1):
+        if index == kule_ostatnie:
+            print('{} - {}'.format(index, value))
+            k = k+1
+
 print("Ta sama liczba w dwóch ostatnich losowaniach to  : ", porównanie)
 print(max(os_x))
 
@@ -229,7 +231,7 @@ print(max(os_x))
 # ----------------------------------------------------------------------To jest sekcja do losowania liczb----------------------------------------------------------------------
 def losowanie_liczb():
     liczby = []
-    ileliczb = 36
+    ileliczb = 6
     maksliczba = 49
     i = 0
 
