@@ -13,6 +13,7 @@ import numpy as np
 import random
 import matplotlib.pyplot as plt
 import pylab
+import openpyxl
 
 # ----------------------------------------------------------------------To jest sekcja do pobierania  danych oraz zczytywania ----------------------------------------------------------------------
 URL = "http://www.mbnet.com.pl/dl.xls"
@@ -87,7 +88,7 @@ y = 0
 cunter = []
 
 while ilosc_column <= -1:
-    lista = sh.col_values(ilosc_column)[-14:]  # ostatnia kolumna w arkuszu
+    lista = sh.col_values(ilosc_column)[-10:-1]  # ostatnia kolumna w arkuszu
     licz_cyfre = 1
     print("To jest lista", lista)
     while licz_cyfre <= 49:
@@ -261,6 +262,13 @@ losowanie_liczb()
 plt.bar(z, os_x, color='red')
 #plt.bar(k, os_x, color='blue')
 plt.show()
+vk = openpyxl.Workbook()
+sk = vk.active
+sk.title = "Lotto"
+for index, value in enumerate(os_x, start=1):
+    sk.cell(row=index, column=1).value = value
+print(sk.title)
+vk.save("C:\\repozytorium\\test\Python\Lotto\Lotto.xlsx")
 # --------------------------------------------------------------------------------------koniec-----------------------------------------------------------------------------------------
 
 # ------------------------------------------------ robi macierz od 0-48----------------------------------------------------------------------------------------------------------
