@@ -32,16 +32,11 @@ if lokalizacja == 1:
 else:
     filepath = "D:/priv_repo/test/Python/dl.xls"
 
-print(filepath)
-# filepath2 = 'D:/priv_repo/test/Python/dl.txt'
-# filepath3 = "D:/priv_repo/test/Python/bazalosl.zip"
-
-
 with open(filepath, 'wb') as f:
     f.write(response.content)
     f.close
 
-# otwarcie pliku
+# otwarcie pliku i kodowanie pliku
 file_1 = xlwt.Workbook(encoding="utf-8")
 '''
 with open(filepath2, 'wb') as f2:
@@ -65,8 +60,6 @@ def data_from_excel(filepath):
     print("Tutaj sa dane ", data_list)
 
 
-# "D:/priv_repo/test/Python/dl.xls"
-# "C:/repozytorium/test/Python/dl.xls"
 if lokalizacja == 1:
     file_1 = xlrd.open_workbook("C:/repozytorium/test/Python/dl.xls")
 else:
@@ -99,14 +92,12 @@ while ilosc_column <= -1:
     print("To jest lista", lista)
     while licz_cyfre <= 49:
         wynik = lista.count(licz_cyfre)
-        # print("Liczb nr ", licz_cyfre, " w kolumnie ",ilosc_column,"jest", wynik )
         cunter.append(wynik)
         licz_cyfre = licz_cyfre + 1
         # licz_wynik = list(range(wynik))
         # print("To jest licznik wyniku", licz_cyfre, licz_wynik, "\n")
 
     ilosc_column = ilosc_column + 1
-    # print (cunter)
 print("\n\n\n                 **************\tIlosc kolumn równa sie :\t", ilosc_column,
       " Licznik przestaje liczyć ilość wystąpienia poszczególnych liczb **************\n\n\n")
 
@@ -153,7 +144,7 @@ print("To jest os X (ilość wystąpienia kazdej liczby od 1 do 49) w ",
 # ------------------------------------------------Obliczanie maximum -----------------------------------------------------------------------------------------------------------------------------------
 print("Najwięcej, bo aż ", max(os_x), "razy  padły",
       os_x.count(max(os_x)), "liczby. Są to :  ")
-# (os_x.index(max(os_x)))+1
+
 maksimum = max(os_x)
 for index, value in enumerate(os_x, start=1):
     if value == maksimum:
@@ -211,14 +202,14 @@ wiersz_20_od_konca = arkusz.row_values(-20)[2:]
 
 porównanie = list(set(wiersz_ost).intersection(set(wiersz_przed_osta)))
 b = [int(i) for i in porównanie]
-print(b)
+# print(b)
 
 print("Przedostatnie losowanie to\t\t\t\t\t\t : ", wiersz_przed_osta)
 print("Ostatnie losowanie z dnia :", wiersz_ost_data, " \t\t : ", wiersz_ost)
 
 k = 2
 while k < 8:
-    kule_ostatnie = arkusz.row_values(-4)[k]
+    kule_ostatnie = arkusz.row_values(-1)[k]
     for index, value in enumerate(os_x, start=1):
         if index == kule_ostatnie:
             print('{} - {}'.format(index, value))
@@ -255,10 +246,15 @@ def losowanie_liczb():
                 i = i - 1
 
             i = i + 1
-            for index, value in enumerate(os_x, start=1):
-                if index == liczba:
-                    print('{} - {}'.format(index, value))
     print("Wylosowane liczby to :", liczby)
+
+    l = 0
+    while l <= ileliczb-1:
+        kule = liczby[l]
+        for index, value in enumerate(os_x, start=1):
+            if index == kule:
+                print('{} - {}'.format(index, value))
+                l = l+1
 
 
 losowanie_liczb()
@@ -275,27 +271,7 @@ print(macierz)
 '''
 # -------------------------------------------------------koniec-------------------------------------------------------------------------------------------------------------------
 
-
-# print(arkusz.name)
-
-# f.read(8)
-# URL = 'http://www.mbnet.com.pl/wyniki.htm'
-
-# page = get (URL)
-# bs = BeautifulSoup(page.content)
-
-# for offer in bs.find_all('a'):
-#    print(offer)
-# print(page.content)
-
-
 '''
-# kodowanie arkusza
-baza = xlwt.Workbook(encoding="utf-8")
-
-
-
-
 # tworze konkretną ilość arkuszy
 sheet1 = baza.add_sheet("Wyniki")
 sheet2 = baza.add_sheet("Dane")
