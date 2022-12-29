@@ -13,42 +13,29 @@ import numpy as np
 import random
 import matplotlib.pyplot as plt
 import pylab
+import openpyxl
 
-# ----------------------------------------------------------------------To jest sekcja do pobierania  danych oraz zczytywania ----------------------------------------------------------------------
-URL = "http://www.mbnet.com.pl/dl.xls"
-URL2 = "http://www.mbnet.com.pl/dl.txt"
-URL3 = "http://www.mbnet.com.pl/bazalosl.zip"
-response = requests.get(URL)
+# ----------------------------------------------------------------------To jest sekcja do pobierania danych oraz zczytywania ----------------------------------------------------------------------
 
-r = requests.get(URL2)
-b = requests.get(URL3)
+URL = "http://www.mbnet.com.pl/dl.xls"                      # lub mozesz użyć URL2 = "http://www.mbnet.com.pl/dl.txt" #URL3 = "http://www.mbnet.com.pl/bazalosl.zip"
+response = requests.get(URL)                                # wtedy należy zastosować r = requests.get(URL2) #b = requests.get(URL3)
 
 lokalizacja = int(input(
-    "Podaj miejsce zapisu do liku dl :  \n 1 ) C:/repozytorium/test/Python/dl.xls \n 2 ) D:/priv_repo/test/Python/dl.txt \n"))
+                        '''\n\n Podaj miejsce zapisu do pliku dl.xls :  \n 
+                                1 ) C:/repozytorium/test/Python/dl.xls 
+                                2 ) D:/priv_repo/test/Python/dl.txt \n'''))
 
 if lokalizacja == 1:
-    filepath = "C:/repozytorium/test/Python/dl.xls"
+    filepath = "C:/repozytorium/test/Python/Lotto/dl.xls"
 
 else:
-    filepath = "D:/priv_repo/test/Python/dl.xls"
-
-# filepath2 = 'D:/priv_repo/test/Python/dl.txt'
-# filepath3 = "D:/priv_repo/test/Python/bazalosl.zip"
-
-
+    filepath = "D:/priv_repo/test/Python/Lotto/dl.xls"       # filepath2 = 'D:/priv_repo/test/Python/dl.txt'
+                                                             # filepath3 = "D:/priv_repo/test/Python/bazalosl.zip"
 with open(filepath, 'wb') as f:
     f.write(response.content)
     f.close
 
-# otwarcie pliku i kodowanie arkusza
-file_1 = xlwt.Workbook(encoding="utf-8")
-'''
-with open(filepath2, 'wb') as f2:
-    f2.write(r.content)
-    f2.close
-with open(filepath3, 'wb') as f3:
-    f3.write(b.content)
-    f3.close '''
+file_1 = xlwt.Workbook(encoding="utf-8")                     # otwarcie pliku i kodowanie pliku
 
 # --------------------------------------------------------------------------------koniec---------------------------------------------------------------------------------------
 
@@ -64,10 +51,11 @@ def data_from_excel(filepath):
     print("Tutaj sa dane ", data_list)
 
 if lokalizacja == 1:
-    file_1 = xlrd.open_workbook("C:/repozytorium/test/Python/dl.xls")
+    file_1 = xlrd.open_workbook("C:/repozytorium/test/Python/Lotto/dl.xls")
 else:
-    file_1 = xlrd.open_workbook("D:/priv_repo/test/Python/dl.xls")
-#file_1 = xlrd.open_workbook(filename=filepath)
+    file_1 = xlrd.open_workbook("D:/priv_repo/test/Python/Lotto/dl.xls")
+
+file_1 = xlrd.open_workbook(filename=filepath)
 print("The number of worksheets is", file_1.nsheets)
 print("Worksheet name(s):", file_1.sheet_names())
 sh = file_1.sheet_by_index(0)
@@ -90,19 +78,17 @@ y = 0
 cunter = []
 
 while ilosc_column <= -1:
-    lista = sh.col_values(ilosc_column)[-11:-1]  # ostatnia kolumna w arkuszu
+    lista = sh.col_values(ilosc_column)[-51:-1]  # ostatnia kolumna w arkuszu
     licz_cyfre = 1
-    print("To jest lista", lista)
+    print("To jest lista \n \n", lista)
     while licz_cyfre <= 49:
         wynik = lista.count(licz_cyfre)
-        # print("Liczb nr ", licz_cyfre, " w kolumnie ",ilosc_column,"jest", wynik )
         cunter.append(wynik)
         licz_cyfre = licz_cyfre + 1
         # licz_wynik = list(range(wynik))
         # print("To jest licznik wyniku", licz_cyfre, licz_wynik, "\n")
 
     ilosc_column = ilosc_column + 1
-    # print (cunter)
 print("\n\n\n                 **************\tIlosc kolumn równa sie :\t", ilosc_column,
       " Licznik przestaje liczyć ilość wystąpienia poszczególnych liczb **************\n\n\n")
 
@@ -117,18 +103,18 @@ moja_lista_3 = cunter[98:147]
 moja_lista_4 = cunter[147:196]
 moja_lista_5 = cunter[196:245]
 moja_lista_6 = cunter[245:294]
-print("To jest pierwsza kolumna (-6) z ilości wystapienia każdej liczby(1-49) \n",
-      moja_lista_1, "wszystkich liczb jest", len(moja_lista_1))
-print("To jest druga kolumna (-5) z  ilości wystapienia każdej liczby(1-49)\n",
-      moja_lista_2, "wszystkich liczb jest", len(moja_lista_2))
-print("To jest trzecia kolumna (-4) z  ilości wystapienia każdej liczby(1-49)\n",
-      moja_lista_3, "wszystkich liczb jest", len(moja_lista_3))
-print("To jest druga kolumna (-3) z  ilości wystapienia każdej liczby(1-49)\n",
-      moja_lista_4, "wszystkich liczb jest", len(moja_lista_4))
-print("To jest druga kolumna (-2) z  ilości wystapienia każdej liczby(1-49)\n",
-      moja_lista_5, "wszystkich liczb jest", len(moja_lista_5))
-print("To jest druga kolumna (-1) z  ilości wystapienia każdej liczby(1-49)\n",
-      moja_lista_6, "wszystkich liczb jest", len(moja_lista_6))
+#print("To jest pierwsza kolumna (-6) z ilości wystapienia każdej liczby(1-49) \n",
+#      moja_lista_1, "wszystkich liczb jest", len(moja_lista_1))
+#print("To jest druga kolumna (-5) z  ilości wystapienia każdej liczby(1-49)\n",
+#      moja_lista_2, "wszystkich liczb jest", len(moja_lista_2))
+#print("To jest trzecia kolumna (-4) z  ilości wystapienia każdej liczby(1-49)\n",
+#      moja_lista_3, "wszystkich liczb jest", len(moja_lista_3))
+#print("To jest druga kolumna (-3) z  ilości wystapienia każdej liczby(1-49)\n",
+#      moja_lista_4, "wszystkich liczb jest", len(moja_lista_4))
+#print("To jest druga kolumna (-2) z  ilości wystapienia każdej liczby(1-49)\n",
+#      moja_lista_5, "wszystkich liczb jest", len(moja_lista_5))
+#print("To jest druga kolumna (-1) z  ilości wystapienia każdej liczby(1-49)\n",
+#      moja_lista_6, "wszystkich liczb jest", len(moja_lista_6))
 # ------------------------------------------------Ile razy wystepuje dana liczba w 'X' losowaniach dodwanie wartościz wszystkich poszczególnych kolumn--------------------------------------------------
 i = 0
 win = []
@@ -149,7 +135,7 @@ print("To jest os X (ilość wystąpienia kazdej liczby od 1 do 49) w ",
 # ------------------------------------------------Obliczanie maximum -----------------------------------------------------------------------------------------------------------------------------------
 print("Najwięcej, bo aż ", max(os_x), "razy  padły",
       os_x.count(max(os_x)), "liczby. Są to :  ")
-# (os_x.index(max(os_x)))+1
+
 maksimum = max(os_x)
 for index, value in enumerate(os_x, start=1):
     if value == maksimum:
@@ -181,43 +167,45 @@ z = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 
      26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49]
 
 
-os_x_str = ''
-for i in os_x:
-    os_x_str += str(i)
-
 for sheet_name in file_1.sheet_names():
     arkusz = file_1.sheet_by_name(sheet_name)
 # ------------------------------------------------ robi macierz z konketynch 20 wierszy ----------------------------------------------------------------------------------------------------------
-'''
+
 rx = -(len(lista))
 i = 0												# tutaj mozesz podać na kótrym wierszu ma sie zakończyć licząc od dołu w pliku dl
-licznik =3
-while i < len(lista) :
+licznik = 3
+while i < len(lista):
     wiersz = arkusz.row_values(rx)[2:]
-    # print("to jest wiersz  ", rx, "które mają wartość", wiersz)
     losowanie = np.array(wiersz)
     print(losowanie)
     if (rx < 1):
         rx = rx + 1
-        i = i+1
-for i in losowanie.flat:
-	# jedynka=licznik.count(licznik)
-	print()
+        i = i + 1
 
-'''
+
 # ---------------------------------------------------- koniec---------------------------------------------------------------------------------------------------------------------------------------
 
 wiersz_ost = arkusz.row_values(-1)[2:]
+
 wiersz_ost_data = arkusz.row_values(-1)[-7]
 wiersz_przed_osta = arkusz.row_values(-2)[2:]
 wiersz_20_od_konca = arkusz.row_values(-20)[2:]
 
 porównanie = list(set(wiersz_ost).intersection(set(wiersz_przed_osta)))
 b = [int(i) for i in porównanie]
-print(b)
+# print(b)
 
 print("Przedostatnie losowanie to\t\t\t\t\t\t : ", wiersz_przed_osta)
 print("Ostatnie losowanie z dnia :", wiersz_ost_data, " \t\t : ", wiersz_ost)
+
+k = 2
+while k < 8:
+    kule_ostatnie = arkusz.row_values(-1)[k]
+    for index, value in enumerate(os_x, start=1):
+        if index == kule_ostatnie:
+            print('{} - {}'.format(index, value))
+            k = k+1
+
 print("Ta sama liczba w dwóch ostatnich losowaniach to  : ", porównanie)
 print(max(os_x))
 
@@ -249,21 +237,28 @@ def losowanie_liczb():
                 # print(liczby)
                 i = i - 1
             i = i + 1
-            
-        
     print("Wylosowane liczby to :", liczby)
- 
-    l=0
+
+    l = 0
     while l <= ileliczb-1:
-        kule=liczby[l]
+        kule = liczby[l]
         for index, value in enumerate(os_x, start=1):
             if index == kule:
                 print('{} - {}'.format(index, value))
-                l=l+1 
+                l = l+1
+
+
 losowanie_liczb()
 plt.bar(z, os_x, color='red')
 #plt.bar(k, os_x, color='blue')
 plt.show()
+vk = openpyxl.Workbook()
+sk = vk.active
+sk.title = "Lotto"
+for index, value in enumerate(os_x, start=1):
+    sk.cell(row=index, column=1).value = value
+print(sk.title)
+vk.save("C:\\repozytorium\\test\Python\Lotto\Lotto.xlsx")
 # --------------------------------------------------------------------------------------koniec-----------------------------------------------------------------------------------------
 
 # ------------------------------------------------ robi macierz od 0-48----------------------------------------------------------------------------------------------------------
@@ -274,10 +269,7 @@ print(macierz)
 '''
 # -------------------------------------------------------koniec-------------------------------------------------------------------------------------------------------------------
 
-
-
 '''
-
 # tworze konkretną ilość arkuszy
 sheet1 = baza.add_sheet("Wyniki")
 sheet2 = baza.add_sheet("Dane")
