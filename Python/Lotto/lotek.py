@@ -14,6 +14,7 @@ import random
 import matplotlib.pyplot as plt
 import pylab
 import openpyxl
+import os
 
 # ----------------------------------------------------------------------To jest sekcja do pobierania danych oraz zczytywania ----------------------------------------------------------------------
 
@@ -258,7 +259,7 @@ sk.title = "Lotto"
 for index, value in enumerate(os_x, start=1):
     sk.cell(row=index, column=1).value = value
 print(sk.title)
-vk.save("C:\\repozytorium\\test\Python\Lotto\Lotto.xlsx")
+vk.save(os.path.dirname(__file__) +"/Lotto.xlsx")
 # --------------------------------------------------------------------------------------koniec-----------------------------------------------------------------------------------------
 
 # ------------------------------------------------ robi macierz od 0-48----------------------------------------------------------------------------------------------------------
